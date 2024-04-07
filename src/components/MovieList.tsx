@@ -1,9 +1,14 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { Movie } from "../state/movie/movieSlice";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getData, Movie } from "../state/movie/movieSlice";
+import { AppDispatch, RootState } from "../state/store";
 
 export const MovieList = () => {
-  const movies = useSelector((state: any) => state.movie.movies);
+  const movies = useSelector((state: RootState) => state.movie.movies);
+  const dispatch = useDispatch<AppDispatch>();
+  useEffect(() => {
+    dispatch(getData());
+  }, [dispatch]);
   return (
     <div className="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
       <table className="min-w-full">
@@ -21,8 +26,8 @@ export const MovieList = () => {
           </tr>
         </thead>
         <tbody className="bg-white">
-          {movies.map((movie: Movie) => (
-            <tr>
+          {movies.map((movie: Movie, index) => (
+            <tr key={index}>
               <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
                 <div className="flex items-center">
                   <div>
