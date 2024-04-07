@@ -1,7 +1,12 @@
 import React from "react";
+import { MovieList } from "./components/MovieList";
 
 function App() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return (
+    <div>
+      <MovieList />
+    </div>
+  );
 }
 
 export default App;
