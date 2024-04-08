@@ -9,13 +9,13 @@ export interface Movie {
 }
 
 interface MovieState {
-  movies: Movie[];
+  Search: Movie[];
   totalResults?: Number;
   Response?: string;
 }
 
 const initialState: MovieState = {
-  movies: [],
+  Search: [],
   totalResults: 0,
 };
 
@@ -24,30 +24,30 @@ const movieSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder
-      .addCase(getData.fulfilled, (state, action: PayloadAction<Movie[]>) => {
-        state.movies = action.payload;
-      })
-      .addCase(
-        searchMovie.fulfilled,
-        (state, action: PayloadAction<Movie[]>) => {
-          state.movies = action.payload;
-        }
-      );
+    builder.addCase(
+      getData.fulfilled,
+      (state, action: PayloadAction<MovieState>) => {
+        state.Search = action.payload.Search;
+        state.totalResults = action.payload.totalResults;
+      }
+    );
   },
 });
 
 const yourkey = "8b162e7b";
 const baseURL = `http://www.omdbapi.com/?apikey=${yourkey}&`;
-export const getData = createAsyncThunk("movie/getData", async () => {
-  const response = await axios.get(`${baseURL}s=pokemon`);
-  return response.data.Search;
-});
-export const searchMovie = createAsyncThunk(
-  "movie/searchMovie",
-  async (movie: string) => {
-    const response = await axios.get(`${baseURL}s=${movie}`);
-    return response.data.Search;
+export const getData = createAsyncThunk(
+  "movie/getData",
+  async ({
+    movie = "pokemon",
+    pageNumber = 1,
+  }: {
+    movie?: string;
+    pageNumber?: number;
+  }) => {
+    const response = await axios.get(`${baseURL}s=${movie}&page=${pageNumber}`);
+    return response.data;
   }
 );
+
 export default movieSlice.reducer;

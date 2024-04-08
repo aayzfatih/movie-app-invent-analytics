@@ -1,14 +1,11 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getData, Movie } from "../state/movie/movieSlice";
-import { AppDispatch, RootState } from "../state/store";
+import React from "react";
+import { useSelector } from "react-redux";
+import { Movie } from "../state/movie/movieSlice";
+import { RootState } from "../state/store";
 
 export const MovieList = () => {
-  const movies = useSelector((state: RootState) => state.movie.movies);
-  const dispatch = useDispatch<AppDispatch>();
-  useEffect(() => {
-    dispatch(getData());
-  }, [dispatch]);
+  const movies = useSelector((state: RootState) => state.movie.Search);
+
   return (
     <div className="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
       <table className="min-w-full">

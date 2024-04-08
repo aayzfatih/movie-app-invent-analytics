@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../state/store";
-import { searchMovie } from "../state/movie/movieSlice";
+import { getData } from "../state/movie/movieSlice";
 
 const SearchBar: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [movie, setMovie] = useState("");
   const handleSubmit = () => {
-    dispatch(searchMovie(movie));
+    dispatch(getData({ movie }));
     setMovie("");
   };
   return (
