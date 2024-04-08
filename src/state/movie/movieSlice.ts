@@ -34,8 +34,7 @@ const movieSlice = createSlice({
   },
 });
 
-const yourkey = "8b162e7b";
-const baseURL = `http://www.omdbapi.com/?apikey=${yourkey}&`;
+const baseURL = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&`;
 export const getData = createAsyncThunk(
   "movie/getData",
   async ({
