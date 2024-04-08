@@ -4,14 +4,14 @@ This project is a movie listing application built with React.
 
 ## Installation
 
-1.Clone the repository: git clone https://github.com/your-username/movie-app.git
-2.Navigate to the project directory: cd movie-app
-3.Install dependencies: npm install
+1.Clone the repository: git clone https://github.com/your-username/movie-app.git  
+2.Navigate to the project directory: cd movie-app  
+3.Install dependencies: npm install  
 
 ## Usage
 
-Start the development server: npm start
-Open http://localhost:3000 to view the app in your browser.
+Start the development server: npm start  
+Open http://localhost:3000 to view the app in your browser.  
 API Key
 
 ## To run the application, you need an API key from the OMDb API. Follow these steps:
